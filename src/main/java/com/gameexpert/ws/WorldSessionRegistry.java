@@ -23,7 +23,10 @@ public class WorldSessionRegistry implements com.gameexpert.api.SessionRegistry 
             ConcurrentHashMap<String, Entry> sessions = current == null
                     ? new ConcurrentHashMap<>() : current;
             // TODO Lv 9: putIfAbsent()로 candidate를 등록하고, 새로 등록했으면 added를 true로 설정합니다.
-            boolean added = false;
+            Entry entry = sessions.putIfAbsent(nicknameKey, candidate);
+
+            boolean added = (entry == null)? true : false;
+
             if (added) {
                 registered.set(candidate);
             }
@@ -52,7 +55,7 @@ public class WorldSessionRegistry implements com.gameexpert.api.SessionRegistry 
             return null;
         }
         // TODO Lv 9: sessions에서 key(nickname)에 해당하는 연결을 반환합니다.
-        return null;
+        return sessions.get(key(nickname));
     }
 
     public Collection<Entry> entries(Long worldId) {
