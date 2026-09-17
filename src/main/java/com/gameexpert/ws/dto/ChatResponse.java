@@ -6,6 +6,15 @@ import lombok.Getter;
 @Getter
 public class ChatResponse {
     // TODO Lv 13: API 명세에 맞게 응답 필드와 생성자를 완성합니다.
+    private String sender;
+    private String content;
+    private LocalDateTime timestamp;
+    private String type;
+
     public ChatResponse(String sender, String content, LocalDateTime timestamp) {
+        this.sender = sender;
+        this.content = content;
+        this.timestamp = timestamp;
+        this.type = "chat";
     }
 }
