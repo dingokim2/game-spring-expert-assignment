@@ -29,7 +29,7 @@ public class MoveWsHandler implements WsMessageHandler {
         boolean crouching = WsFields.booleanValue(message, "crouching");
         boolean gliding = WsFields.booleanValue(message, "gliding");
 
-        PlayerAction action = new PlayerAction.Move(context.nickname(), x, y, z, yaw, pitch, crouching, gliding);
+        PlayerAction action = new PlayerAction.Move(context.nickname(), x, y, z, yaw, -pitch, crouching, gliding, finalSceneActionId);
         engineManager.enqueue(context.worldId(), action);
     }
 }
